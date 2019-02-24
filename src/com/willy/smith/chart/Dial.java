@@ -1,4 +1,3 @@
-
 package com.willy.smith.chart;
 
 import javafx.scene.Group;
@@ -17,7 +16,6 @@ import javafx.scene.transform.Rotate;
 
 public class Dial extends Parent {
 
-    //visual nodes
     private final double radius;
     private final Color FILL_COLOR = Color.web("#0A0A0A");
     private final Font NUMBER_FONT = Font.font("Comic Sans", FontWeight.NORMAL, 14);
@@ -55,22 +53,22 @@ public class Dial extends Parent {
 
         for (int i = 0; i < numOfMarks; i++) {
             double angle = (360 / numOfMarks) * (i);
-            group.getChildren().add(createTic(angle, radius / 15, 1.5));
+            group.getChildren().add(createTic(angle, radius*0.03, radius*0.004));
         }
 
         for (int i = 0; i < numOfMinorMarks; i++) {
             double angle = (360 / numOfMinorMarks) * i;
-            group.getChildren().add(createTic(angle, radius / 30, 1));
+            group.getChildren().add(createTic(angle, radius*0.015, radius*0.004));
         }
         return group;
     }
 
     private Rectangle createTic(double angle, double width, double height) {
-        Rectangle rectangle = new Rectangle(-width / 2, -height / 2, width, height);
+        Rectangle rectangle = new Rectangle(-width/2, -height/2, width, height);
         rectangle.setFill(Color.rgb(10, 10, 10));
         rectangle.setRotate(angle);
-        rectangle.setLayoutX(radius * Math.cos(Math.toRadians(angle)));
-        rectangle.setLayoutY(radius * Math.sin(Math.toRadians(angle)));
+        rectangle.setLayoutX((radius) * Math.cos(Math.toRadians(angle)));
+        rectangle.setLayoutY((radius) * Math.sin(Math.toRadians(angle)));
         return rectangle;
     }
 

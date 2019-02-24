@@ -9,9 +9,9 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 	
-	private static final double width = 100;
+	private static final double width = 200;
 	private static final double height = width * 0.618;
-	private static final double scale = 8;
+	private static final double scale = 5;
 	
 	private SmithChart smith = new SmithChart();
 
@@ -24,12 +24,12 @@ public class Main extends Application {
 		root.setLayoutX(0);
 		root.setLayoutY(0);
 		primaryStage.setScene(createScene(root, width*scale, height*scale));
+		primaryStage.setTitle("Smith Chart Utility");
 		primaryStage.show();
 	}
 
 	private Scene createScene(Pane root, double cWidth, double cHeight) {
-		smith.setLayoutY(0);
-		smith.setLayoutX(0);
+		smith.setLayoutX(30);
 		root.getChildren().addAll(smith);
 		Scene scene = new Scene(root, cWidth, cHeight);
 		return scene;
