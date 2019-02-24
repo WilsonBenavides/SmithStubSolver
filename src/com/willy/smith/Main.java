@@ -1,55 +1,45 @@
 package com.willy.smith;
 
+import com.willy.smith.chart.SmithChart;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-/**
- * 
- * @author Wilson Benavides - benavidesb@unicauca.edu.co
- * @version 0.0
- *
- */
-
 public class Main extends Application {
-
-	private static final String TITLE = "Smith Stub Solver";
-	private static final double WIDTH = 100;
-	private static final double HEIGHT = WIDTH * 0.618;
-	private static final double SCALE = 8;
-
-	private SmithChart smithChart = new SmithChart();
-
-	@Override
-	public void start(Stage primaryStage) {
-		try {
-			Pane root = new Pane();
-			// scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setTitle(TITLE);
-			primaryStage.setScene(createScene(root, WIDTH * SCALE, HEIGHT * SCALE));
-			primaryStage.show();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	private Scene createScene(Pane root, double cWidth, double cHeight) {
-
-		root.getChildren().add(smithChart);
-		Scene scene = new Scene(root, cWidth, cHeight);
-		return scene;
-	}
+	
+	private static final double width = 100;
+	private static final double height = width * 0.618;
+	private static final double scale = 8;
+	
+	private SmithChart smith = new SmithChart();
 
 	public static void main(String[] args) {
 		launch(args);
 	}
-
-	public static double getWidth() {
-		return WIDTH * SCALE;
+	
+	public void start(Stage primaryStage) {
+		Pane root = new Pane();
+		root.setLayoutX(0);
+		root.setLayoutY(0);
+		primaryStage.setScene(createScene(root, width*scale, height*scale));
+		primaryStage.show();
 	}
 
+	private Scene createScene(Pane root, double cWidth, double cHeight) {
+		smith.setLayoutY(0);
+		smith.setLayoutX(0);
+		root.getChildren().addAll(smith);
+		Scene scene = new Scene(root, cWidth, cHeight);
+		return scene;
+	}
+	
+	public static double getWidth() {
+		return width*scale;
+	}
+	
 	public static double getHeight() {
-		return HEIGHT * SCALE;
+		return height*scale;
 	}
 }
