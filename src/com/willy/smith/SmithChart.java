@@ -15,113 +15,112 @@ import javafx.scene.shape.Line;
  *
  */
 
-
 public class SmithChart extends Parent {
-	
+
 	private static final double RADIO = 120 * 2;
-	private static final double origenX = Main.getWidth()/2;
-	private static final double origenY= Main.getHeight()/2;
-	
+	private static final double originX = Main.getWidth() / 2;
+	private static final double originY = Main.getHeight() / 2;
+
 	public SmithChart() {
 		Circle cPrincipal = drawCircleResistence(0, Color.DARKGREEN);
-		this.getChildren().addAll(cPrincipal);	
-		
+		this.getChildren().addAll(cPrincipal);
+
 		Group test = drawArcReactance(0.5, Color.MEDIUMPURPLE);
 		this.getChildren().addAll(test);
 	}
 
 	/**
 	 * 
-	 * @param xl It represents normalized load reactance
-	 * @param color reactance circle color 
+	 * @param xl    It represents normalized load reactance
+	 * @param color reactance circle color
 	 * @return Arc on screen with reactance xl and color
 	 */
 	private Group drawArcReactance(double xl, Color color) {
-Group main = new Group();
-		
+		Group main = new Group();
+
 		double x = 1;
 		double y;
 		double ratio;
-		double yp = 2*xl/(1+xl*xl);
-		double xp = 1-yp/xl;
-		
-		y = 1/xl;
-		ratio = 1/xl;
-		
-		Circle reactanceDown = new Circle(origenX + x*RADIO, origenY + y*RADIO, ratio*RADIO, Color.TRANSPARENT);
-		reactanceDown.setStroke(Color.BLACK);
-		reactanceDown.setStrokeWidth(2);
+		double yp = 2 * xl / (1 + xl * xl);
+		double xp = 1 - yp / xl;
 
-		Circle reactanceUp = new Circle(origenX + x*RADIO, origenY - y*RADIO, ratio*RADIO, Color.TRANSPARENT);
-		reactanceUp.setStroke(Color.BLACK);
-		reactanceUp.setStrokeWidth(2);
-		
-		Circle greenpoint = new Circle(origenX + RADIO, origenY, 4, Color.GREEN);
-		Circle redpoint = new Circle(origenX+xp*RADIO, origenY + yp*RADIO, 4, Color.RED);
-		Circle bluepoint = new Circle(origenX+xp*RADIO, origenY - yp*RADIO, 4, Color.BLUE);
-		Circle centerpoint = new Circle(reactanceDown.getCenterX(), reactanceDown.getCenterY(), 4, Color.AQUA);
-		
-		Line line = new Line(redpoint.getCenterX(), redpoint.getCenterY(), greenpoint.getCenterX(), greenpoint.getCenterY());
+		y = 1 / xl;
+		ratio = 1 / xl;
+
+		Circle reactanceCircleDown = new Circle(originX + x * RADIO, originY + y * RADIO, ratio * RADIO, Color.TRANSPARENT);
+		reactanceCircleDown.setStroke(Color.BLACK);
+		reactanceCircleDown.setStrokeWidth(2);
+
+		Circle reactanceCircleUp = new Circle(originX + x * RADIO, originY - y * RADIO, ratio * RADIO, Color.TRANSPARENT);
+		reactanceCircleUp.setStroke(Color.BLACK);
+		reactanceCircleUp.setStrokeWidth(2);
+
+		Circle referencePoint = new Circle(originX + RADIO, originY, 4, Color.GREEN);
+		Circle crossUnitResisReactUp = new Circle(originX + xp * RADIO, originY - yp * RADIO, 4, Color.BLUE);
+		Circle crossUnitResisReactDown = new Circle(originX + xp * RADIO, originY + yp * RADIO, 4, Color.RED);
+//		Circle centerpoint = new Circle(reactanceCircleDown.getCenterX(), reactanceCircleDown.getCenterY(), 4, Color.AQUA);
+
+		Line line = new Line(crossUnitResisReactDown.getCenterX(), crossUnitResisReactDown.getCenterY(), referencePoint.getCenterX(), referencePoint.getCenterY());
 		line.setStroke(Color.BLUE);
 		line.setStrokeWidth(2);
-		
-		Line line2 = new Line(bluepoint.getCenterX(), bluepoint.getCenterY(), greenpoint.getCenterX(), greenpoint.getCenterY());
+
+		Line line2 = new Line(crossUnitResisReactUp.getCenterX(), crossUnitResisReactUp.getCenterY(), referencePoint.getCenterX(), referencePoint.getCenterY());
 		line2.setStroke(Color.AQUAMARINE);
 		line2.setStrokeWidth(2);
-		
-		double gpxDown = (greenpoint.getCenterX()-reactanceDown.getCenterX())/RADIO;
-		double gpxUp = (greenpoint.getCenterX()-reactanceUp.getCenterX())/RADIO;
-		double rpx= Math.acos((redpoint.getCenterX() - reactanceDown.getCenterX())/reactanceDown.getRadius());
-		double bpx= Math.acos((bluepoint.getCenterX() - reactanceUp.getCenterX())/reactanceUp.getRadius());
+
+		double gpxDown = (referencePoint.getCenterX() - reactanceCircleDown.getCenterX()) / RADIO;
+//		double gpxUp = (greenpoint.getCenterX() - reactanceCircleUp.getCenterX()) / RADIO;
+		double rpx = Math.acos((crossUnitResisReactDown.getCenterX() - reactanceCircleDown.getCenterX()) / reactanceCircleDown.getRadius());
+		double bpx = Math.acos((crossUnitResisReactUp.getCenterX() - reactanceCircleUp.getCenterX()) / reactanceCircleUp.getRadius());
 
 		double rpangle, bpangle;
-		
-		double gpangleDown = (180*Math.acos(gpxDown))/Math.PI;
-		double gpangleUp = (180*Math.acos(gpxUp))/Math.PI;
-		rpangle = (xl > 1) ? 360 - (180*(rpx))/Math.PI : (180*(rpx))/Math.PI;
-		bpangle = (xl > 1) ? (180*(bpx))/Math.PI : 360 - (180*(bpx))/Math.PI;
-		double lenght = rpangle - gpangleDown;
-		
-		Arc arc = new Arc();
-		arc.setCenterX(reactanceDown.getCenterX());
-		arc.setCenterY(reactanceDown.getCenterY());
-		arc.setRadiusX(reactanceDown.getRadius());
-		arc.setRadiusY(reactanceDown.getRadius());
-		arc.setStartAngle(gpangleDown);
-		arc.setLength(lenght);
-		arc.setFill(Color.TRANSPARENT);
-		arc.setStroke(color);
-		arc.setType(ArcType.OPEN);
+
+		double gpangle = (180 * Math.acos(gpxDown)) / Math.PI;
+//		double gpangleUp = (180 * Math.acos(gpxUp)) / Math.PI;
+		rpangle = (xl > 1) ? 360 - (180 * (rpx)) / Math.PI : (180 * (rpx)) / Math.PI;
+		bpangle = (xl > 1) ? (180 * (bpx)) / Math.PI : 360 - (180 * (bpx)) / Math.PI;
+		double lenght = rpangle - gpangle;
+
+		Arc positiveReactArc = new Arc();
+		positiveReactArc.setCenterX(reactanceCircleDown.getCenterX());
+		positiveReactArc.setCenterY(reactanceCircleDown.getCenterY());
+		positiveReactArc.setRadiusX(reactanceCircleDown.getRadius());
+		positiveReactArc.setRadiusY(reactanceCircleDown.getRadius());
+		positiveReactArc.setStartAngle(gpangle);
+		positiveReactArc.setLength(lenght);
+		positiveReactArc.setFill(Color.TRANSPARENT);
+		positiveReactArc.setStroke(color);
+		positiveReactArc.setType(ArcType.OPEN);
 
 		lenght = 270 - bpangle;
-		Arc arc2 = new Arc();
-		arc2.setCenterX(reactanceUp.getCenterX());
-		arc2.setCenterY(reactanceUp.getCenterY());
-		arc2.setRadiusX(reactanceUp.getRadius());
-		arc2.setRadiusY(reactanceUp.getRadius());
-		arc2.setStartAngle(bpangle);
-		arc2.setLength(lenght);
-		arc2.setFill(Color.TRANSPARENT);
-		arc2.setStroke(color);
-		arc2.setType(ArcType.OPEN);
-		
-		main.getChildren().addAll(arc, bluepoint, arc2, reactanceDown, reactanceUp, line, centerpoint, greenpoint, redpoint, line2);
+		Arc negativeReactArc = new Arc();
+		negativeReactArc.setCenterX(reactanceCircleUp.getCenterX());
+		negativeReactArc.setCenterY(reactanceCircleUp.getCenterY());
+		negativeReactArc.setRadiusX(reactanceCircleUp.getRadius());
+		negativeReactArc.setRadiusY(reactanceCircleUp.getRadius());
+		negativeReactArc.setStartAngle(bpangle);
+		negativeReactArc.setLength(lenght);
+		negativeReactArc.setFill(Color.TRANSPARENT);
+		negativeReactArc.setStroke(color);
+		negativeReactArc.setType(ArcType.OPEN);
+
+		main.getChildren().addAll(positiveReactArc, negativeReactArc, referencePoint, crossUnitResisReactUp, crossUnitResisReactDown);
 		return main;
 	}
 
 	/**
 	 * 
-	 * @param rl It represents normalized load resistance
-	 * @param color resistance circle color 
+	 * @param rl    It represents normalized load resistance
+	 * @param color resistance circle color
 	 * @return Circle on screen with resistance rl and color
 	 */
 	private Circle drawCircleResistence(double rl, Color color) {
-		
-		double xc = rl/(1 + rl);
+
+		double xc = rl / (1 + rl);
 		double yc = 0;
-		double ratio = 1/(1 + rl);
-		
-		Circle c1 = new Circle(origenX + xc*RADIO, origenY + yc, ratio*RADIO, Color.TRANSPARENT);
+		double ratio = 1 / (1 + rl);
+
+		Circle c1 = new Circle(originX + xc * RADIO, originY + yc, ratio * RADIO, Color.TRANSPARENT);
 		c1.setStroke(color);
 		c1.setStrokeWidth(1);
 		return c1;

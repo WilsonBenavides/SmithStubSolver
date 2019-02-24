@@ -48,8 +48,8 @@ public class Main extends Application {
 	public static double getWidth() {
 		return WIDTH * SCALE;
 	}
-	
+
 	public static double getHeight() {
 		return HEIGHT * SCALE;
-	}	
+	}
 }
