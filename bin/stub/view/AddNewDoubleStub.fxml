@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="420.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stub.view.AddNewDoubleStubController">
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="40.0" prefWidth="615.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="okBtn" mnemonicParsing="false" onAction="#handleOkBtn" prefWidth="80.0" text="Ok" />
+            <Button fx:id="cancelBtn" mnemonicParsing="false" onAction="#handleCancelBtn" prefWidth="80.0" text="Cancel" />
+         </children>
+      </HBox>
+   </bottom>
+   <top>
+      <VBox prefHeight="43.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+               <children>
+                  <Label text="Universidad del Cauca">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></Label>
+                  <Label text="Facultad de Ingenieria Electrónica">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></Label>
+                  <Label text="Edgar Ortiz L">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></Label>
+               </children>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="200.0">
+               <children>
+                  <Label text="Carta de Smith" textFill="#d02a2a">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></Label>
+                  <Label text="Stub Doble" textFill="#d02a2a">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></Label>
+               </children>
+               <padding>
+                  <Insets left="90.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" text="Datos de Prueba">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <GridPane prefHeight="349.0" prefWidth="700.0">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="105.0" minWidth="10.0" prefWidth="38.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="149.0" minWidth="10.0" prefWidth="113.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="152.0" minWidth="10.0" prefWidth="152.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="50.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="204.0" minWidth="10.0" prefWidth="182.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="232.0" minWidth="10.0" prefWidth="157.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="138.0" minWidth="6.0" prefWidth="23.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints maxHeight="72.0" minHeight="10.0" prefHeight="12.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="118.0" minHeight="10.0" prefHeight="67.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="96.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="84.0" minHeight="10.0" prefHeight="65.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="59.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="53.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="22.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Zo  = " GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <Label text="Zos =" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                  <Label text="Rl de carga = " GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                  <Label text="d1 =" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                  <TextField fx:id="zoField" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <TextField fx:id="zosField" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <TextField fx:id="rlField" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <TextField fx:id="d1Field" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                  <Label text="Fv =" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <Label text="Fvs =" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                  <Label text="Xl de carga =" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                  <Label text="d2 =" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                  <TextField fx:id="fvField" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                  <TextField fx:id="fvsField" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                  <TextField GridPane.columnIndex="5" GridPane.rowIndex="3" fx:id="xlField" />
+                  <TextField fx:id="d2Field" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                  <Label text="Frecuencia (MHz) =" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField fx:id="freqField" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                  <ComboBox fx:id="typeStub" prefHeight="25.0" prefWidth="165.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" text="Tipo" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+               </children>
+            </GridPane>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
